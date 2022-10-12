@@ -11,25 +11,27 @@ export class ChartComponent implements OnInit {
 
   title = 'Coding-Challenge-Chart';
 
-  products: any = (account as any).default;
+  array: any = (account as any).default;
+  
+  jsonDate = this.array[0].balanceMonthly[1].date;
+  jsonValue = this.array[0].balanceMonthly[1].balance;
 
   Highcharts: typeof Highcharts = Highcharts; // required
   chartConstructor: string = 'chart'; // optional string, defaults to 'chart'
-  chartOptions: Highcharts.Options = {    
+  chartOptions: Highcharts.Options = {
     xAxis: {
-      categories: [this.products[0].balanceMonthly[0].date]
-     },
+      categories: [this.jsonDate]
+    },
     yAxis: {
-      title: {
-        
-    }
+      categories: [this.jsonValue]
     },
     series: [{
-    name: 'Hallo',
-    data: [1, 2, 3],
-    type: 'line',
-    
-  }] }; // required
+      name: 'Grafische Darstellung',
+      data: [1, 2, 3],
+      type: 'line',
+
+    }]
+  }; // required
   // chartCallback: Highcharts.ChartCallbackFunction = function (chart) { ... } 
   updateFlag: boolean = false; // optional boolean
   oneToOneFlag: boolean = true; // optional boolean, defaults to false
@@ -38,8 +40,8 @@ export class ChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.products[0].balanceMonthly);
-    // this.chartOptions.push(this.products[0].balanceMonthly.date)
+    console.log(this.array[0]);
+    // this.jsonDate.push(this.chartOptions.xAxis)
   }
 
 }
